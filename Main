@@ -1,0 +1,102 @@
+water = 400
+milk = 540
+coffee_beans = 120
+cups = 9
+money = 550
+
+def print_resources():
+    print('The coffee machine has:')
+    print(water, ' of water')
+    print(milk, ' of milk')
+    print(coffee_beans, ' of coffee beans')
+    print(cups, ' of disposable cups')
+    print(money, ' of money')
+
+
+def fill():
+    global water, money, coffee_beans, milk, cups
+    print('Write how many ml of water do you want to add:')
+    water = water + int(input())
+    print('Write how many ml of milk do you want to add:')
+    milk = milk + int(input())
+    print('Write how many grams of coffee beans do you want to add:')
+    coffee_beans = coffee_beans + int(input())
+    print('Write how many disposable cups of coffee do you want to add:')
+    cups = cups + int(input())
+
+
+def take():
+    global water, money, coffee_beans, milk, cups
+    print('I gave you $', money)
+    money = 0 
+
+
+def espresso():
+    global water, money, coffee_beans, milk, cups
+    if water < 250 or coffee_beans < 16 or cups == 0:
+        print('I can\'t make a cup of coffee!')
+    else:
+        water -= 250
+        coffee_beans -= 16
+        cups -= 1
+        money += 4
+        print('I have enough resources, making you a coffee!')
+
+
+def latte():
+    global water, money, coffee_beans, milk, cups
+    if water < 350 or coffee_beans < 20 or milk < 75  or cups == 0:
+        print('I cant make a cup of coffee')
+    else:
+        water -= 350
+        milk -= 75
+        coffee_beans -= 20
+        money += 7
+        cups -= 1
+        print('I have enough resources, making you a coffee!')
+
+
+def cappuccino():
+    global water, money, coffee_beans, milk, cups
+    if water < 200 or coffee_beans < 12 or milk < 100 or cups == 0:
+        print('I cant make a cup of coffee')
+    else:
+        water -= 200
+        milk -= 100
+        coffee_beans -= 12
+        money += 6
+        cups -= 1
+        print('I have enough resources, making you a coffee!')
+    
+
+while True:
+    print()
+    print('Write action (buy ,fill ,take ,remaining ,exit):')
+    action = input()
+    print()
+
+
+
+    if action == 'fill':
+        fill()
+    elif action == 'take':
+        take()
+    elif action == 'buy':
+        print('What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back: to main menu ')
+        choice = input()
+        if choice == '1':
+            espresso()
+        elif choice == '2':
+            latte()
+        elif choice == '3':
+            cappuccino()
+        elif choice == 'back':
+            continue
+
+    elif action == 'remaining':
+        print_resources()
+    elif action == 'exit':
+        break
+
+
+
